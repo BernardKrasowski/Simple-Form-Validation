@@ -8,7 +8,22 @@ class App extends Component {
     email: '',
     pass: '',
     accept: false,
+    message: '',
+
+    errors: {
+      username: false,
+      email: false,
+      pass: false,
+      accept: false,
+    }
   }
+  messages = {
+    username_incorrect: 'Name musi być dłuższa niż 10 znaków i nie może zawierać spacji',
+    email_incorrect: 'Brak @ w emailu',
+    pass_incorrect: 'Hasło musi mieć 8 znaków',
+    accept_incorrect: 'Nie potwierdzona zgoda'
+  }
+
 
   handleChange = (e) => {
     const value = e.target.value;
@@ -30,7 +45,72 @@ class App extends Component {
   }
   handleSubmit = (e) => {
     e.preventDefault();
-    console.log('dziala')
+    const validation = this.formValidation()
+
+    if (validation.correct) {
+      this.setState({
+        username: '',
+        email: '',
+        pass: '',
+        accept: false,
+        message: 'Formularz zostal wyslany',
+
+        errors: {
+          username: false,
+          email: false,
+          pass: false,
+          accept: false,
+        }
+      })
+
+    } else {
+      this.setState({
+        errors: {
+          username: !validation.username,
+          email: !validation.email,
+          pass: !validation.password,
+          accept: !validation.accept,
+        }
+      })
+    }
+  }
+
+  formValidation = () => {
+    let username = false;
+    let email = false;
+    let password = false;
+    let accept = false;
+    let correct = false;
+
+    if (this.state.username.length >= 10 && this.state.username.indexOf(' ') === -1) {
+      username = true;
+    }
+    if (this.state.email.indexOf('@') !== -1) {
+      email = true;
+    }
+    if (this.state.pass.length === 8) {
+      password = true;
+    }
+    if (this.state.accept) {
+      accept = true;
+    }
+    if (username && email && password && accept) {
+      correct = true;
+    }
+    return ({
+      correct,
+      email,
+      username,
+      password,
+      accept,
+    })
+  }
+  componentDidUpdate() {
+    if (this.state.message !== '') {
+      setTimeout(() => this.setState({
+        message: '',
+      }), 3000)
+    }
   }
   render() {
     return (
@@ -58,6 +138,11 @@ class App extends Component {
 
           <button>Sign in</button>
         </form>
+        {this.state.errors.username && <span>{this.messages.username_incorrect}</span>}
+        {this.state.errors.email && <span>{this.messages.email_incorrect}</span>}
+        {this.state.errors.pass && <span>{this.messages.pass_incorrect}</span>}
+        {this.state.errors.accept && <span>{this.messages.accept_incorrect}</span>}
+        {this.state.message !== '' && <h3>{this.state.message}</h3>}
       </div>
 
     );

@@ -8,3 +8,7 @@ label{
 input{
     margin-left: 10px;
 }
+span{
+    display: block;
+    color: red;
+}
