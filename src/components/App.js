@@ -20,7 +20,7 @@ class App extends Component {
   messages = {
     username_incorrect: 'The "Name" must contain at least 10 characters',
     email_incorrect: 'The email has to contain "@" character',
-    pass_incorrect: 'Min. 8 characters',
+    pass_incorrect: 'The "Password" must contain 8 characters',
     accept_incorrect: 'Accept the terms'
   }
 
@@ -53,7 +53,7 @@ class App extends Component {
         email: '',
         pass: '',
         accept: false,
-        message: 'Formularz zostal wyslany',
+        message: 'Submitted',
 
         errors: {
           username: false,
@@ -114,37 +114,41 @@ class App extends Component {
   }
   render() {
     return (
+      <>
+        <h1>Form Validation</h1>
+        <div className="App">
 
-      <div className="App">
-        <form onSubmit={this.handleSubmit} noValidate>
-          <label htmlFor="user">Name:
+          <form onSubmit={this.handleSubmit} noValidate>
+            <label htmlFor="user">Name:
           <input type="text" id='user' name="username"
-              value={this.state.username} onChange={this.handleChange} />
-          </label>
+                value={this.state.username} onChange={this.handleChange} />
+            </label>
 
-          <label htmlFor="email">E-mail:
+            <label htmlFor="email">E-mail:
           <input type="email" id='email' name="email"
-              value={this.state.email} onChange={this.handleChange} />
-          </label>
+                value={this.state.email} onChange={this.handleChange} />
+            </label>
 
-          <label htmlFor="password">Password:
+            <label htmlFor="password">Password:
           <input type="password" id='password' name="pass"
-              value={this.state.pass} onChange={this.handleChange} />
+                value={this.state.pass} onChange={this.handleChange} />
+            </label>
+
+            <label htmlFor="accept">
+              <input type="checkbox" id="accept" name="accept" checked={this.state.accept} onChange={this.handleChange} />Accept terms.
           </label>
 
-          <label htmlFor="accept">
-            <input type="checkbox" id="accept" name="accept" checked={this.state.accept} onChange={this.handleChange} />Accept terms.
-          </label>
-
-          <button>Sign in</button>
-        </form>
-        {this.state.errors.username && <span>{this.messages.username_incorrect}</span>}
-        {this.state.errors.email && <span>{this.messages.email_incorrect}</span>}
-        {this.state.errors.pass && <span>{this.messages.pass_incorrect}</span>}
-        {this.state.errors.accept && <span>{this.messages.accept_incorrect}</span>}
-        {this.state.message !== '' && <h3>{this.state.message}</h3>}
-      </div>
-
+            <button>Sign in</button>
+          </form>
+          <div className="errors">
+            {this.state.errors.username && <span>{this.messages.username_incorrect}</span>}
+            {this.state.errors.email && <span>{this.messages.email_incorrect}</span>}
+            {this.state.errors.pass && <span>{this.messages.pass_incorrect}</span>}
+            {this.state.errors.accept && <span>{this.messages.accept_incorrect}</span>}
+            {this.state.message !== '' && <h3>{this.state.message}</h3>}
+          </div>
+        </div>
+      </>
     );
   }
 }

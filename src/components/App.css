@@ -1,5 +1,16 @@
+
+h1{
+    display: block;
+    text-align: center;
+    
+}
+.App {
+    border: 2px black solid;
+   
+}
 form {
     text-align: center;
+    
 }
 label{
     margin: 10px;
@@ -10,6 +21,7 @@ input{
     margin-left: 10px;
 }
 span{
+    text-align: center;
     display: block;
     color: red;
 }
