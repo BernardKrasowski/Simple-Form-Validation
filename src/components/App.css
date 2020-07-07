@@ -1,9 +1,10 @@
-form{
-    margin:10px;
+form {
+    text-align: center;
 }
 label{
     margin: 10px;
     display: block;
+    cursor: pointer;
 }
 input{
     margin-left: 10px;
@@ -11,4 +12,16 @@ input{
 span{
     display: block;
     color: red;
+}
+button{
+    margin: 10px auto 20px;
+    background-color: white;
+    border: 2px solid black;
+    padding: 10px 30px;
+    cursor: pointer;
+    transition: .2s;
+   }
+button:hover {
+    background-color: black;
+    color: white;
 }
