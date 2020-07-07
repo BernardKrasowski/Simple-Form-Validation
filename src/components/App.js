@@ -18,15 +18,15 @@ class App extends Component {
     }
   }
   messages = {
-    username_incorrect: 'Name musi być dłuższa niż 10 znaków i nie może zawierać spacji',
-    email_incorrect: 'Brak @ w emailu',
-    pass_incorrect: 'Hasło musi mieć 8 znaków',
-    accept_incorrect: 'Nie potwierdzona zgoda'
+    username_incorrect: 'The "Name" must contain at least 10 characters',
+    email_incorrect: 'The email has to contain "@" character',
+    pass_incorrect: 'Min. 8 characters',
+    accept_incorrect: 'Accept the terms'
   }
 
 
   handleChange = (e) => {
-    const value = e.target.value;
+
     const name = e.target.name;
     const type = e.target.type;
 
@@ -122,7 +122,7 @@ class App extends Component {
               value={this.state.username} onChange={this.handleChange} />
           </label>
 
-          <label htmlFor="email">Email:
+          <label htmlFor="email">E-mail:
           <input type="email" id='email' name="email"
               value={this.state.email} onChange={this.handleChange} />
           </label>
@@ -133,7 +133,7 @@ class App extends Component {
           </label>
 
           <label htmlFor="accept">
-            <input type="checkbox" id="accept" name="accept" checked={this.state.accept} onChange={this.handleChange} />Accept terms
+            <input type="checkbox" id="accept" name="accept" checked={this.state.accept} onChange={this.handleChange} />Accept terms.
           </label>
 
           <button>Sign in</button>
